@@ -14,7 +14,7 @@
 
 **公钥内容：**
 ```
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILaX0o14mE6gYqIbmZ+SS+AtZfc8oUyVKs5+6QtLFGVL dev@tsmainite.local
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIILbSObT01Nnb3MDdl5j5i1Vm8/9ZhR7TAZ3Wc8gCYQA dev@tsmainite.local
 ```
 
 **密钥位置：**
