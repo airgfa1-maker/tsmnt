@@ -9,6 +9,33 @@ Next.js + React + TypeScript + Tailwind CSS 构建的现代企业网站前端
 npm install
 ```
 
+### 配置环境变量（重要！）
+
+根据你的部署环境创建 `.env.local` 文件：
+
+```bash
+cp .env.example .env.local
+```
+
+然后编辑 `.env.local`，修改 `BACKEND_API_URL` 为你的后端地址：
+
+**本地开发：**
+```env
+BACKEND_API_URL=http://localhost:3001
+```
+
+**内网部署：**
+```env
+BACKEND_API_URL=http://192.168.0.136:3001  # 改为你的服务器 IP
+```
+
+**公网部署：**
+```env
+BACKEND_API_URL=https://api.yourdomain.com
+```
+
+详见 [DEPLOYMENT_CONFIG.md](../DEPLOYMENT_CONFIG.md) 了解更多部署方案。
+
 ### 启动开发服务器
 ```bash
 npm run dev
