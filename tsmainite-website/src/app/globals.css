@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafbfc;
+  --foreground: #0d1117;
+  --primary: #0052cc;
+  --border: #e5e7eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d1117;
+    --foreground: #e6edf3;
+    --primary: #58a6ff;
+    --border: #30363d;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Markdown 样式 */
+.markdown-render h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.markdown-render h2 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.markdown-render h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+}
+
+.markdown-render h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-render h5 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-render h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #111827;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-render p {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+.markdown-render ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+}
+
+.markdown-render ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+}
+
+.markdown-render li {
+  color: #374151;
+  font-size: 1.0625rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-render blockquote {
+  border-left: 4px solid #60a5fa;
+  padding-left: 1rem;
+  font-style: italic;
+  color: #4b5563;
+  margin: 1.5rem 0;
+  background-color: #eff6ff;
+  padding: 1rem;
+  border-radius: 0.375rem;
+}
+
+.markdown-render code {
+  background-color: #f3f4f6;
+  color: #111827;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+.markdown-render pre {
+  background-color: #111827;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-render pre code {
+  background-color: transparent;
+  color: #f3f4f6;
+  padding: 0;
+}
+
+.markdown-render a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.markdown-render a:hover {
+  color: #1d4ed8;
+}
+
+.markdown-render img {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-render hr {
+  border-color: #d1d5db;
+  margin: 2rem 0;
+}
+
+.markdown-render table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.markdown-render thead {
+  background-color: #f3f4f6;
+}
+
+.markdown-render th,
+.markdown-render td {
+  border: 1px solid #d1d5db;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.markdown-render th {
+  font-weight: bold;
+  background-color: #f3f4f6;
+}
+
+.markdown-render strong {
+  font-weight: bold;
+  color: #111827;
+}
+
+.markdown-render em {
+  font-style: italic;
+  color: #374151;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

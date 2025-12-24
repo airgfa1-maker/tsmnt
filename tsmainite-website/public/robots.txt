@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# 阻止爬虫访问以下目录
+Disallow: /.next/
+Disallow: /api/
+Disallow: /admin/
+
+# 设置爬虫延迟（秒）
+Crawl-delay: 1
+
+# Sitemap 位置
+Sitemap: https://tsmainite.com/sitemap.xml
+
+# 设置优先级页面
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# 对于其他搜索引擎保持相同规则
+User-agent: *
+Allow: /

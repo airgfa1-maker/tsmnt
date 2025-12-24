@@ -1,0 +1,207 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id           String   @id @default(cuid())
+  name         String
+  model        String?
+  description  String?
+  content      String?  // Markdown content
+  categoryId   String
+  category     ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  image        String?
+  price        Float?
+  featured     Boolean  @default(false) // 是否在首页展示
+  displayOrder Int      @default(0) // 首页展示顺序
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ProductCategory {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  products  Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Case {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  content     String?
+  image       String?
+  company     String?  // 客户企业名称
+  location    String?  // 项目地点
+  industry    String?  // 行业分类
+  featured    Boolean  @default(false) // 是否在首页展示
+  displayOrder Int     @default(0) // 首页展示顺序
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  image       String?
+  category    String?  // 新闻分类
+  excerpt     String?  // 摘要
+  author      String?  // 作者
+  date        String?  // 发布日期
+  featured    Boolean  @default(false) // 是否在首页展示
+  displayOrder Int     @default(0) // 首页展示顺序
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  file        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  status    String   @default("unread") // unread, read, replied
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 首页Hero轮播
+model HomeHeroSlide {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String
+  image     String
+  link      String   // 点击后跳转的链接
+  order     Int      @default(0) // 顺序
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 首页企业介绍
+model HomeAbout {
+  id        String   @id @default(cuid())
+  title     String   // 大标题
+  content   String   // 文字内容
+  image     String?  // 图片路径
+  updatedAt DateTime @updatedAt
+}
+
+// 关于我们页面
+model PageAbout {
+  id        String   @id @default(cuid())
+  content   String   // Markdown 内容
+  updatedAt DateTime @updatedAt
+}
+
+// 首页产品系列卡片
+model HomeProductCard {
+  id        String   @id @default(cuid())
+  title     String
+  description String
+  image     String
+  link      String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 首页展示案例
+model HomeCase {
+  id        String   @id @default(cuid())
+  caseId    String   // 关联到Case表的ID
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// 网站全局设置信息
+model SiteInfo {
+  id                    String   @id @default(cuid())
+  // 联系方式
+  phone                 String?  // 电话
+  whatsapp              String?  // WhatsApp号码
+  email                 String?  // 邮箱
+  address               String?  // 地址
+  
+  // 公司信息
+  companyName           String?  // 公司名称
+  companyDescription    String?  // 公司简介
+  companyLogo           String?  // LOGO 路径
+  
+  // 社交媒体
+  facebook              String?  // Facebook 链接
+  instagram             String?  // Instagram 链接
+  twitter               String?  // Twitter/X 链接
+  youtube               String?  // YouTube 链接
+  tiktok                String?  // TikTok 链接
+  linkedin              String?  // LinkedIn 链接
+  
+  // 备案信息
+  icp                   String?  // ICP 备案号
+  securityCode          String?  // 公安备案号
+  
+  // 百度地图设置
+  baiduMapAk            String?  // 百度地图 API 密钥
+  officeAddressName     String?  // 办公地址名称
+  officeAddressDetail   String?  // 办公地址详细信息
+  officeAddressLng      Float?   // 办公地址经度
+  officeAddressLat      Float?   // 办公地址纬度
+  officePhone           String?  // 办公电话
+  officeEmail           String?  // 办公邮箱
+  
+  // 其他设置
+  theme                 String   @default("light") // 主题：light/dark
+  language              String   @default("zh-CN") // 默认语言
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+// SEO 和元数据设置
+model SiteMeta {
+  id                    String   @id @default(cuid())
+  title                 String?  // 网站标题
+  description           String?  // 网站描述
+  keywords              String?  // 网站关键词
+  author                String?  // 作者
+  favicon               String?  // 网站图标路径
+  ogImage               String?  // Open Graph 图片
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+// 相册管理
+model Gallery {
+  id                    String   @id @default(cuid())
+  title                 String
+  image                 String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
