@@ -37,6 +37,8 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use('/uploads', express.static(uploadDir));
+// 为了支持前端通过 /api/uploads 路由访问静态文件
+app.use('/api/uploads', express.static(uploadDir));
 
 // 为向后兼容性，从uploadHandlers中提取单一的upload对象
 // 用于server.ts中的旧路由定义

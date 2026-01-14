@@ -17,12 +17,6 @@ export default function SettingsPage() {
     whatsapp: '',
     companyDescription: '',
     companyLogo: '',
-    facebook: '',
-    instagram: '',
-    twitter: '',
-    youtube: '',
-    tiktok: '',
-    linkedin: '',
     icp: '',
     securityCode: '',
     baiduMapAk: '',
@@ -65,12 +59,6 @@ export default function SettingsPage() {
         whatsapp: settings.whatsapp || '',
         companyDescription: settings.companyDescription || '',
         companyLogo: settings.companyLogo || '',
-        facebook: settings.facebook || '',
-        instagram: settings.instagram || '',
-        twitter: settings.twitter || '',
-        youtube: settings.youtube || '',
-        tiktok: settings.tiktok || '',
-        linkedin: settings.linkedin || '',
         icp: settings.icp || '',
         securityCode: settings.securityCode || '',
         baiduMapAk: settings.baiduMapAk || '',
@@ -135,23 +123,7 @@ export default function SettingsPage() {
     }
   };
 
-  const handleSaveSocial = async () => {
-    try {
-      setError('');
-      setSuccess('');
-      await adminApi.put('/settings/admin/info', {
-        facebook: formData.facebook,
-        instagram: formData.instagram,
-        twitter: formData.twitter,
-        youtube: formData.youtube,
-        tiktok: formData.tiktok,
-        linkedin: formData.linkedin,
-      });
-      setSuccess('社交媒体已保存');
-    } catch (err) {
-      setError('保存出错');
-    }
-  };
+
 
   const handleSaveMap = async () => {
     try {
@@ -236,7 +208,7 @@ export default function SettingsPage() {
 
       <div className="bg-white rounded-lg shadow">
         <div className="border-b flex gap-0">
-          {(['basic', 'social', 'seo', 'map', 'password'] as const).map(tab => (
+          {(['basic', 'seo', 'map', 'password'] as const).map(tab => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -247,7 +219,6 @@ export default function SettingsPage() {
               }`}
             >
               {tab === 'basic' && '基本信息'}
-              {tab === 'social' && '社交媒体'}
               {tab === 'seo' && 'SEO设置'}
               {tab === 'map' && '百度地图'}
               {tab === 'password' && '修改密码'}
@@ -336,82 +307,6 @@ export default function SettingsPage() {
             </div>
           )}
 
-          {activeTab === 'social' && (
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Facebook</label>
-                <input
-                  type="url"
-                  name="facebook"
-                  value={formData.facebook}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Instagram</label>
-                <input
-                  type="url"
-                  name="instagram"
-                  value={formData.instagram}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Twitter/X</label>
-                <input
-                  type="url"
-                  name="twitter"
-                  value={formData.twitter}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">YouTube</label>
-                <input
-                  type="url"
-                  name="youtube"
-                  value={formData.youtube}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">TikTok</label>
-                <input
-                  type="url"
-                  name="tiktok"
-                  value={formData.tiktok}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">LinkedIn</label>
-                <input
-                  type="url"
-                  name="linkedin"
-                  value={formData.linkedin}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              <button
-                onClick={handleSaveSocial}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
-              >
-                保存
-              </button>
-            </div>
-          )}
 
           {activeTab === 'map' && (
             <div className="space-y-6">

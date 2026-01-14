@@ -10,7 +10,7 @@ export default function Products() {
   return (
     <>
       <Header />
-      <main className="pt-16 min-h-screen bg-white">
+      <main className="pt-24 min-h-screen bg-white">
         {/* Breadcrumb */}
         <div className="bg-gray-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 py-4">

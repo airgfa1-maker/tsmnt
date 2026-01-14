@@ -9,6 +9,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "db:push": "prisma db push",
+    "db:init": "npm run build && node dist/init-db.js",
     "db:seed": "node dist/seed.js",
     "prisma:generate": "prisma generate"
   },
