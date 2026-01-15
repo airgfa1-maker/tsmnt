@@ -116,6 +116,8 @@ export default function SettingsPage() {
         email: formData.email,
         whatsapp: formData.whatsapp,
         companyDescription: formData.companyDescription,
+        icp: formData.icp,
+        securityCode: formData.securityCode,
       });
       setSuccess('基本信息已保存');
     } catch (err) {
