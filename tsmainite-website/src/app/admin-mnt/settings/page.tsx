@@ -298,6 +298,38 @@ export default function SettingsPage() {
                 />
               </div>
 
+              <div className="border-t pt-6">
+                <h4 className="text-base font-semibold text-gray-900 mb-4">备案信息</h4>
+                
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">ICP 备案号</label>
+                    <input
+                      type="text"
+                      name="icp"
+                      value={formData.icp}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="如：ICP备12345678号"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">在 Footer 页脚显示</p>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">公安备案号</label>
+                    <input
+                      type="text"
+                      name="securityCode"
+                      value={formData.securityCode}
+                      onChange={handleInputChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="如：京公网安备 11010502033661 号"
+                    />
+                    <p className="mt-1 text-xs text-gray-500">在 Footer 页脚显示</p>
+                  </div>
+                </div>
+              </div>
+
               <button
                 onClick={handleSaveBasic}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
