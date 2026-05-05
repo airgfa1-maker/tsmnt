@@ -20,7 +20,7 @@ export default function EditCategoryPage() {
 
   const loadCategory = async () => {
     try {
-      const response = await fetch(`/api/product-categories/${id}`, {
+      const response = await fetch(`/api/admin/product-categories/${id}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },

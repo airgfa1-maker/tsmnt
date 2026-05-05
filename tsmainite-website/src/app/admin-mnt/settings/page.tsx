@@ -14,7 +14,6 @@ export default function SettingsPage() {
     address: '',
     phone: '',
     email: '',
-    whatsapp: '',
     companyDescription: '',
     companyLogo: '',
     icp: '',
@@ -56,7 +55,6 @@ export default function SettingsPage() {
         address: settings.address || '',
         phone: settings.phone || '',
         email: settings.email || '',
-        whatsapp: settings.whatsapp || '',
         companyDescription: settings.companyDescription || '',
         companyLogo: settings.companyLogo || '',
         icp: settings.icp || '',
@@ -114,7 +112,6 @@ export default function SettingsPage() {
         address: formData.address,
         phone: formData.phone,
         email: formData.email,
-        whatsapp: formData.whatsapp,
         companyDescription: formData.companyDescription,
         icp: formData.icp,
         securityCode: formData.securityCode,
@@ -276,18 +273,6 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">WhatsApp</label>
-                  <input
-                    type="text"
-                    name="whatsapp"
-                    value={formData.whatsapp}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">公司简介</label>

@@ -38,13 +38,13 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 py-5">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="flex items-center h-11 min-w-fit pr-3">
+          <Link href="/" className="flex items-center h-16 min-w-fit pr-3">
             <Image
               src="/images/logo.png"
               alt="TS Mainite Logo"
-              width={240}
-              height={60}
-              className="h-11 w-auto"
+              width={400}
+              height={100}
+              className="h-16 w-auto"
               priority
             />
           </Link>
@@ -88,10 +88,6 @@ export default function Header() {
               成功案例
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/support" className="text-gray-700 hover:text-gray-900 transition font-medium duration-200 relative group">
-              下载支持
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
             <Link href="/news" className="text-gray-700 hover:text-gray-900 transition font-medium duration-200 relative group">
               企业动态
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
@@ -123,9 +119,6 @@ export default function Header() {
             </Link>
             <Link href="/cases" className="block px-3 py-2 text-gray-700 hover:bg-gray-50 text-base font-medium transition duration-200">
               成功案例
-            </Link>
-            <Link href="/support" className="block px-3 py-2 text-gray-700 hover:bg-gray-50 text-base font-medium transition duration-200">
-              下载支持
             </Link>
             <Link href="/news" className="block px-3 py-2 text-gray-700 hover:bg-gray-50 text-base font-medium transition duration-200">
               企业动态

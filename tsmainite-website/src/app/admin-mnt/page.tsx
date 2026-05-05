@@ -8,9 +8,7 @@ interface DashboardStats {
   newsCount: number;
   caseCount: number;
   productCount: number;
-  documentCount: number;
   categoryCount: number;
-  heroCount: number;
   galleryCount: number;
   pageViews?: number;
   visitorCount?: number;
@@ -21,9 +19,7 @@ export default function AdminDashboard() {
     newsCount: 0,
     caseCount: 0,
     productCount: 0,
-    documentCount: 0,
     categoryCount: 0,
-    heroCount: 0,
     galleryCount: 0,
     pageViews: 0,
     visitorCount: 0,
@@ -43,14 +39,12 @@ export default function AdminDashboard() {
   const loadDashboardData = async () => {
     try {
       setRefreshing(true);
-      const [newsRes, casesRes, productsRes, categoriesRes, messagesRes, documentsRes, heroRes, galleryRes] = await Promise.all([
+      const [newsRes, casesRes, productsRes, categoriesRes, messagesRes, galleryRes] = await Promise.all([
         adminApi.getList('/news', 1, 1).catch(() => ({ data: [], pagination: { total: 0 } })),
         adminApi.getList('/cases', 1, 1).catch(() => ({ data: [], pagination: { total: 0 } })),
         adminApi.getList('/products', 1, 1).catch(() => ({ data: [], pagination: { total: 0 } })),
         adminApi.getList('/product-categories', 1, 100).catch(() => ({ data: [], pagination: { total: 0 } })),
         adminApi.getList('/messages', 1, 1).catch(() => ({ data: [], pagination: { total: 0 } })),
-        adminApi.getList('/documents', 1, 1).catch(() => ({ data: [], pagination: { total: 0 } })),
-        fetch('/api/home/hero-slides').then(r => r.json()).catch(() => []),
         fetch('/api/gallery').then(r => r.json()).catch(() => ({ data: [], total: 0 }))
       ]);
 
@@ -59,8 +53,6 @@ export default function AdminDashboard() {
         caseCount: (casesRes as any)?.pagination?.total || 0,
         productCount: (productsRes as any)?.pagination?.total || 0,
         categoryCount: (categoriesRes as any)?.pagination?.total || 0,
-        documentCount: (documentsRes as any)?.pagination?.total || 0,
-        heroCount: Array.isArray(heroRes) ? heroRes.length : 0,
         galleryCount: (galleryRes as any)?.total || 0,
       });
     } catch (error) {
@@ -89,9 +81,7 @@ export default function AdminDashboard() {
     { title: '案例研究', count: stats.caseCount, icon: '📋', link: '/admin-mnt/cases', color: 'border-green-500' },
     { title: '产品', count: stats.productCount, icon: '🛠', link: '/admin-mnt/products', color: 'border-purple-500' },
     { title: '产品分类', count: stats.categoryCount, icon: '📁', link: '/admin-mnt/categories', color: 'border-orange-500' },
-    { title: '文档', count: stats.documentCount, icon: '📄', link: '/admin-mnt/documents', color: 'border-teal-500' },
     { title: '图片库', count: stats.galleryCount, icon: '🖼', link: '/admin-mnt/gallery', color: 'border-pink-500' },
-    { title: '首页管理', count: stats.heroCount, icon: '🏠', link: '/admin-mnt/home', color: 'border-indigo-500' },
     { title: '访问统计', count: '📊', icon: '📊', link: '/admin-mnt/stats', color: 'border-cyan-500' },
   ];
 
@@ -131,7 +121,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center py-2">
             <span className="text-gray-600">数据总量</span>
             <span className="font-semibold text-gray-900">
-              {stats.newsCount + stats.caseCount + stats.productCount + stats.documentCount + stats.categoryCount + stats.heroCount + stats.galleryCount} 项
+              {stats.newsCount + stats.caseCount + stats.productCount + stats.categoryCount + stats.galleryCount} 项
             </span>
           </div>
           <div className="flex justify-between items-center py-2">

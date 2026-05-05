@@ -6,7 +6,6 @@
 interface SiteInfo {
   id: string;
   phone?: string;
-  whatsapp?: string;
   email?: string;
   address?: string;
   companyName?: string;
@@ -47,7 +46,6 @@ interface SiteMeta {
 
 interface ContactInfo {
   phone?: string;
-  whatsapp?: string;
   email?: string;
   address?: string;
 }

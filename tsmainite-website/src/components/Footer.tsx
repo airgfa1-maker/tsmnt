@@ -38,7 +38,6 @@ export default function Footer() {
   }, []);
 
   const phone = siteInfo?.phone || '139-3150-1373';
-  const whatsapp = siteInfo?.whatsapp || '1393150137';
   const email = siteInfo?.email || 'tsmainite@163.com';
   const address = siteInfo?.address || '河北省唐山市';
   const icp = siteInfo?.icp || 'ICP备案';
@@ -66,9 +65,9 @@ export default function Footer() {
             <Image
               src="/images/logo.png"
               alt={companyName}
-              width={180}
-              height={45}
-              className="h-8 w-auto mb-4"
+              width={300}
+              height={75}
+              className="h-14 w-auto mb-4"
             />
             <p className="text-sm text-gray-600 leading-relaxed mb-4">
               {companyDescription}
@@ -197,11 +196,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/support" className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
-                  • 下载支持
-                </Link>
-              </li>
-              <li>
                 <Link href="/contact" className="text-gray-600 hover:text-gray-900 transition-colors text-sm">
                   • 联系我们
                 </Link>
@@ -219,20 +213,6 @@ export default function Footer() {
                   <span className="text-gray-600 text-sm">电话</span>
                   <a href={`tel:${phone}`} className="text-gray-900 hover:text-gray-700 transition-colors text-sm font-medium">
                     {phone}
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <MessageCircle size={18} className="text-gray-600 flex-shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-1">
-                  <span className="text-gray-600 text-sm">消息</span>
-                  <a
-                    href={`https://wa.me/${whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-900 hover:text-gray-700 transition-colors text-sm font-medium"
-                  >
-                    WhatsApp
                   </a>
                 </div>
               </li>

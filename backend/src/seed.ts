@@ -11,7 +11,6 @@ async function main() {
       companyName: '唐山迈尼特电气有限公司',
       companyDescription: '专业磁电解决方案提供商，拥有20年工业电磁技术深耕经验，为全球客户提供高效、可靠、创新的电气解决方案。',
       phone: '139-3150-1373',
-      whatsapp: '1393150137',
       email: 'tsmainite@163.com',
       address: '河北省唐山市',
       facebook: 'https://facebook.com/tsmainite',
@@ -212,36 +211,6 @@ async function main() {
   ]);
 
   console.log('✅ 已创建 4 条新闻');
-
-  // 创建文档
-  await Promise.all([
-    prisma.document.create({
-      data: {
-        title: '产品使用手册',
-        content: '# 产品使用手册\n\n## 安装步骤\n1. 检查配件完整性\n2. 按照安装指南安装\n3. 进行初始化测试\n\n## 故障排除\n- 问题：无法启动\n- 解决方案：检查电源连接'
-      }
-    }),
-    prisma.document.create({
-      data: {
-        title: '技术规格书',
-        content: '# 技术规格\n\n## 电气指标\n- 工作电压：220V/380V\n- 功率因数：0.95\n- 保护等级：IP65\n\n## 环境条件\n- 工作温度：-20°C ~ +50°C\n- 湿度：5% ~ 95%'
-      }
-    }),
-    prisma.document.create({
-      data: {
-        title: '维护保养指南',
-        content: '# 维护保养\n\n## 日常维护\n- 检查设备运行状态\n- 清洁散热器\n- 检查螺栓紧固\n\n## 定期保养\n- 每月：油液检查\n- 每季：全面检修\n- 每年：主要部件更换'
-      }
-    }),
-    prisma.document.create({
-      data: {
-        title: '安全操作规程',
-        content: '# 安全操作\n\n## 操作前检查\n- 确认电源正常\n- 检查安全装置\n- 穿戴防护装备\n\n## 紧急停止\n- 按下红色按钮立即停止\n- 切断电源\n- 进行故障排查'
-      }
-    })
-  ]);
-
-  console.log('✅ 已创建 4 个文档');
 
   console.log('✅ 数据库填充完成！');
 }

@@ -57,7 +57,6 @@ npm start
 - **案例** - 案例展示和详情页
 - **新闻** - 新闻列表和内容
 - **产品** - 产品目录
-- **支持/下载** - 文档和资源下载
 - **联系我们** - 联系表单 + 百度地图集成
 
 ### 管理面板
@@ -67,7 +66,6 @@ npm start
 - 案例管理
 - 新闻管理
 - 产品管理
-- 文档管理
 - 消息管理
 - 网站设置（百度地图 AK、公司信息等）
 - 分类管理
@@ -95,7 +93,6 @@ tsmainite-website/
 │   │   │   ├── products/           # 产品管理
 │   │   │   ├── news/               # 新闻管理
 │   │   │   ├── cases/              # 案例管理
-│   │   │   ├── documents/          # 文档管理
 │   │   │   ├── gallery/            # 相册管理
 │   │   │   ├── categories/         # 分类管理
 │   │   │   ├── messages/           # 消息管理
@@ -106,9 +103,7 @@ tsmainite-website/
 │   │   ├── cases/
 │   │   ├── news/
 │   │   ├── products/
-│   │   ├── downloads/
 │   │   ├── contact/
-│   │   └── support/
 │   ├── components/
 │   │   ├── Header.tsx              # 头部导航
 │   │   ├── Footer.tsx              # 底部

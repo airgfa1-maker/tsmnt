@@ -52,8 +52,6 @@ npm start
 - 案例管理
 - 新闻管理
 - 产品管理
-- 下载资源
-- 文档管理
 - 消息收集
 
 **路由:**
@@ -61,11 +59,9 @@ npm start
 - `GET/POST/PUT/DELETE /api/cases` - 案例管理
 - `GET/POST/PUT/DELETE /api/news` - 新闻管理
 - `GET/POST/PUT/DELETE /api/products` - 产品管理
-- `GET/POST/PUT/DELETE /api/documents` - 文档管理
 
 ### 文件上传
 - 图片上传（案例、新闻、产品、图库）
-- 文档上传
 - 文件删除
 
 **路由:**
@@ -126,7 +122,6 @@ backend/
 - `Case` - 案例
 - `News` - 新闻
 - `Product` - 产品
-- `Document` - 文档
 - `Message` - 消息（联系表单）
 
 ## 环境配置
@@ -171,7 +166,6 @@ PORT=3001
 - `/uploads/news/` - 新闻图片
 - `/uploads/products/` - 产品图片
 - `/uploads/gallery/` - 相册图片
-- `/uploads/documents/` - 文档文件
 
 上传示例：
 ```bash

@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { Case, News, Document, Message } from '../types';
+import { Case, News, Message } from '../types';
 
 const prisma = new PrismaClient();
 
@@ -142,58 +142,6 @@ export class NewsService {
 
   static async deleteNews(id: string) {
     return prisma.news.delete({ where: { id } });
-  }
-}
-
-/**
- * 文档服务
- */
-export class DocumentService {
-  static async getAllDocuments() {
-    return prisma.document.findMany({ orderBy: { createdAt: 'desc' } });
-  }
-
-  static async getDocumentsList(page: number = 1, pageSize: number = 10) {
-    const skip = (page - 1) * pageSize;
-    const [data, total] = await Promise.all([
-      prisma.document.findMany({
-        orderBy: { createdAt: 'desc' },
-        skip,
-        take: pageSize
-      }),
-      prisma.document.count()
-    ]);
-    return { data, pagination: { page, pageSize, total, totalPages: Math.ceil(total / pageSize) } };
-  }
-
-  static async getDocumentById(id: string) {
-    return prisma.document.findUnique({ where: { id } });
-  }
-
-  static async createDocument(data: Omit<Document, 'id' | 'createdAt' | 'updatedAt'>) {
-    return prisma.document.create({
-      data: {
-        title: data.title,
-        content: data.content,
-        file: data.file || null
-      }
-    });
-  }
-
-  static async updateDocument(id: string, data: Partial<Document>) {
-    return prisma.document.update({
-      where: { id },
-      data: {
-        title: data.title,
-        content: data.content,
-        // 如果提供了 file（包括null），更新它；否则保持不变
-        ...(data.file !== undefined && { file: data.file })
-      }
-    });
-  }
-
-  static async deleteDocument(id: string) {
-    return prisma.document.delete({ where: { id } });
   }
 }
 

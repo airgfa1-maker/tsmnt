@@ -129,7 +129,6 @@ const startServer = async () => {
       console.log(`  - 产品: GET /api/products`);
       console.log(`  - 案例: GET /api/cases`);
       console.log(`  - 新闻: GET /api/news`);
-      console.log(`  - 文档: GET /api/documents`);
       console.log(`  - 消息: POST /api/messages`);
       console.log(`  - 翻译: GET /api/specs-translations`);
       console.log('');

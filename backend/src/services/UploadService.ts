@@ -18,7 +18,6 @@ export const ensureUploadDirs = () => {
     path.join(uploadDir, 'products'),
     path.join(uploadDir, 'cases'),
     path.join(uploadDir, 'news'),
-    path.join(uploadDir, 'documents'),
     path.join(uploadDir, 'index') // 用于hero-slides
   ];
 
@@ -33,12 +32,11 @@ export const ensureUploadDirs = () => {
 /**
  * 为不同的文件类型创建multer实例
  */
-const createUpload = (uploadType: 'products' | 'cases' | 'news' | 'documents' | 'hero') => {
+const createUpload = (uploadType: 'products' | 'cases' | 'news' | 'hero') => {
   const folderMap: Record<string, string> = {
     products: 'products',
     cases: 'cases',
     news: 'news',
-    documents: 'documents',
     hero: 'index' // hero-slides存储在index文件夹
   };
 
@@ -58,49 +56,11 @@ const createUpload = (uploadType: 'products' | 'cases' | 'news' | 'documents' | 
     storage,
     limits: { fileSize: 50 * 1024 * 1024 }, // 50MB
     fileFilter: (req, file, cb) => {
-      // 文档支持常见文档格式
-      if (uploadType === 'documents') {
-        const allowedMimes = [
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'application/vnd.ms-excel',
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          'application/vnd.ms-powerpoint',
-          'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-          'text/plain',
-          'text/csv',
-          'application/zip',
-          'application/x-rar-compressed',
-          'application/x-7z-compressed',
-          'application/x-tar',
-          'application/gzip',
-          'application/x-gzip'
-        ];
-        
-        const allowedExts = [
-          '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', 
-          '.txt', '.csv', '.zip', '.rar', '.7z', '.tar', '.gz', '.tgz'
-        ];
-        
-        const ext = path.extname(file.originalname).toLowerCase();
-        const mimeOk = allowedMimes.includes(file.mimetype);
-        const extOk = allowedExts.includes(ext);
-        
-        // 只要 MIME 类型或扩展名中有一个符合就接受
-        if (mimeOk || extOk) {
-          cb(null, true);
-        } else {
-          cb(new Error('Only document files are allowed (PDF, Word, Excel, PowerPoint, Text, CSV, ZIP, RAR, 7Z, TAR, GZ)'));
-        }
+      const allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (allowedMimes.includes(file.mimetype)) {
+        cb(null, true);
       } else {
-        // 其他类型（图片）
-        const allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-        if (allowedMimes.includes(file.mimetype)) {
-          cb(null, true);
-        } else {
-          cb(new Error('Only image files are allowed (jpeg, png, gif, webp)'));
-        }
+        cb(new Error('Only image files are allowed (jpeg, png, gif, webp)'));
       }
     }
   });
@@ -113,7 +73,6 @@ export const uploadHandlers = {
   products: createUpload('products'),
   cases: createUpload('cases'),
   news: createUpload('news'),
-  documents: createUpload('documents'),
   hero: createUpload('hero')
 };
 

@@ -38,7 +38,6 @@ async function main() {
         companyName: '唐山迈尼特电气有限公司',
         companyDescription: '专业磁电解决方案提供商，20年工业电磁技术深耕经验',
         phone: '139-3150-1373',
-        whatsapp: '1393150137',
         email: 'tsmainite@163.com',
         address: '河北省唐山市',
         facebook: '',
@@ -218,7 +217,6 @@ async function main() {
     await prisma.homeProductCard.deleteMany({});
     await prisma.homeCase.deleteMany({});
     await prisma.gallery.deleteMany({});
-    await prisma.document.deleteMany({});
     await prisma.message.deleteMany({});
     console.log('   ✅ 临时表已清空\n');
 

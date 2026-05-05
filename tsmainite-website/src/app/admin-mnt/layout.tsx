@@ -31,6 +31,8 @@ export default function AdminLayout({
     router.push('/admin-mnt/login');
   };
 
+  const isActive = (href: string) => pathname === href;
+
   // 登录页直接返回
   if (pathname.includes('/admin-mnt/login')) {
     return <>{children}</>;
@@ -61,21 +63,14 @@ export default function AdminLayout({
     { href: '/admin-mnt/about', label: '关于', icon: '📖' },
     { href: '/admin-mnt/products', label: '产品', icon: '🛠' },
     { href: '/admin-mnt/cases', label: '案例', icon: '📋' },
-    { href: '/admin-mnt/news', label: '新闻', icon: '📰' },
-    { href: '/admin-mnt/documents', label: '文档', icon: '📄' },
-    { href: '/admin-mnt/categories', label: '分类', icon: '📁' },
-    { href: '/admin-mnt/gallery', label: '相册', icon: '🖼' },
-    { href: '/admin-mnt/messages', label: '留言', icon: '💬' },
-    { href: '/admin-mnt/settings', label: '设置', icon: '⚙️' },
+    { href: '/admin-mnt/news', label: '新闻', icon: '📰' }
   ];
-
-  const isActive = (href: string) => pathname === href || (href !== '/admin-mnt' && pathname.startsWith(href));
 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* 侧边栏 */}
       <div className="w-64 bg-gray-900 text-white p-6 overflow-y-auto">
-        <h1 className="text-2xl font-bold mb-8">迈尼特管理</h1>
+        <h1 className="text-2xl font-bold mb-8">盛鑫机械</h1>
         
         <nav className="space-y-2">
           {menuItems.map(item => (

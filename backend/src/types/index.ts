@@ -62,16 +62,6 @@ export interface News {
   updatedAt: Date;
 }
 
-// 文档相关
-export interface Document {
-  id: string;
-  title: string;
-  content: string;
-  file?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 // 消息相关
 export interface Message {
   id: string;

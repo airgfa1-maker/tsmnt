@@ -61,13 +61,6 @@ export interface ProductCategory {
   description?: string;
 }
 
-export interface Document extends ContentItem {
-  title: string;
-  category: string;
-  content: string;
-  fileUrl?: string;
-}
-
 export interface Message {
   id: string | number;
   name: string;

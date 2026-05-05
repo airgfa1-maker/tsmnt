@@ -13,7 +13,6 @@ export const adminMenuItems: AdminMenuItem[] = [
   { label: '新闻管理', href: '/admin-mnt/news', icon: '📰' },
   { label: '案例管理', href: '/admin-mnt/cases', icon: '📋' },
   { label: '产品管理', href: '/admin-mnt/products', icon: '🛠️' },
-  { label: '文档管理', href: '/admin-mnt/documents', icon: '📚' },
   { label: '产品分类', href: '/admin-mnt/categories', icon: '📁' },
   { label: '图片库', href: '/admin-mnt/gallery', icon: '🖼️' },
   { label: '消息管理', href: '/admin-mnt/messages', icon: '📧' },

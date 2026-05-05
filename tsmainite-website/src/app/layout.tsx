@@ -14,55 +14,81 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "唐山迈尼特 - 工业电磁设备领先制造商",
-  description: "专业从事电磁除铁器、电磁搅拌器、电缆卷筒等工业电磁设备的设计、制造与销售。25年行业经验，服务全球500+企业客户。",
-  keywords: ["电磁除铁器", "电磁搅拌器", "工业电磁设备", "电缆卷筒", "液态金属泵"],
-  authors: [{ name: "唐山迈尼特" }],
-  creator: "唐山迈尼特",
-  publisher: "唐山迈尼特",
-  formatDetection: {
-    email: false,
-    telephone: false,
-    address: false,
-  },
-  metadataBase: new URL("https://tsmainite.com"),
-  openGraph: {
-    type: "website",
-    locale: "zh_CN",
-    url: "https://tsmainite.com",
-    siteName: "唐山迈尼特",
-    title: "唐山迈尼特 - 工业电磁设备领先制造商",
-    description: "专业从事电磁除铁器、电磁搅拌器、电缆卷筒等工业电磁设备的设计、制造与销售。25年行业经验，服务全球500+企业客户。",
-    images: [
-      {
-        url: "https://tsmainite.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "唐山迈尼特",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "唐山迈尼特 - 工业电磁设备领先制造商",
-    description: "专业从事电磁除铁器、电磁搅拌器、电缆卷筒等工业电磁设备的设计、制造与销售。",
-    images: ["https://tsmainite.com/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
+// 动态获取网站元数据
+async function getSiteMetadata() {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'}/settings/meta`, {
+      next: { revalidate: 3600 } // 缓存1小时
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data.data;
+    }
+  } catch (error) {
+    console.error('Failed to fetch site metadata:', error);
+  }
+  return null;
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const siteMeta = await getSiteMetadata();
+  
+  const title = siteMeta?.title || "唐山迈尼特 - 工业电磁设备领先制造商";
+  const description = siteMeta?.description || "专业从事电磁除铁器、电磁搅拌器、电缆卷筒等工业电磁设备的设计、制造与销售。25年行业经验，服务全球500+企业客户。";
+  const keywords = siteMeta?.keywords ? siteMeta.keywords.split(',').map((k: string) => k.trim()) : ["电磁除铁器", "电磁搅拌器", "工业电磁设备", "电缆卷筒", "液态金属泵"];
+  const author = siteMeta?.author || "唐山迈尼特";
+  const ogImage = siteMeta?.ogImage || "https://tsmainite.com/og-image.jpg";
+
+  return {
+    title,
+    description,
+    keywords,
+    authors: [{ name: author }],
+    creator: author,
+    publisher: author,
+    formatDetection: {
+      email: false,
+      telephone: false,
+      address: false,
+    },
+    metadataBase: new URL("https://tsmainite.com"),
+    openGraph: {
+      type: "website",
+      locale: "zh_CN",
+      url: "https://tsmainite.com",
+      siteName: author,
+      title,
+      description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: author,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+    robots: {
       index: true,
       follow: true,
-      noimageindex: false,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+      },
     },
-  },
-  alternates: {
-    canonical: "https://tsmainite.com",
-  },
-};
+    alternates: {
+      canonical: "https://tsmainite.com",
+    },
+  };
+}
 
 export default function RootLayout({
   children,

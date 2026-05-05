@@ -127,22 +127,6 @@ app.post('/api/uploads/news', authMiddleware, uploadHandlers.news.single('file')
   }
 });
 
-// 上传文档
-app.post('/api/uploads/documents', authMiddleware, uploadHandlers.documents.single('file'), async (req: Request, res: Response) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ code: 400, message: 'No file uploaded' });
-    }
-    res.json({ 
-      code: 200, 
-      message: 'Document uploaded successfully', 
-      path: `/uploads/documents/${req.file.filename}` 
-    });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Upload failed', error: error.message });
-  }
-});
-
 // 上传图库图片
 app.post('/api/uploads/gallery', authMiddleware, uploadHandlers.hero.single('file'), async (req: Request, res: Response) => {
   try {
@@ -528,69 +512,6 @@ app.delete('/api/admin/news/:id', authMiddleware, async (req: Request, res: Resp
   try {
     const news = await prisma.news.delete({ where: { id: req.params.id } });
     res.json({ code: 200, message: 'News deleted', data: news });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Server error', error: error.message });
-  }
-});
-
-// ===== 文档 API =====
-
-app.get('/api/documents', async (req: Request, res: Response) => {
-  try {
-    const docs = await prisma.document.findMany({ orderBy: { createdAt: 'desc' } });
-    res.json({ code: 200, message: 'Success', data: docs });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Server error', error: error.message });
-  }
-});
-
-app.get('/api/documents/:id', async (req: Request, res: Response) => {
-  try {
-    const doc = await prisma.document.findUnique({ where: { id: req.params.id } });
-    if (!doc) return res.status(404).json({ code: 404, message: 'Document not found' });
-    res.json({ code: 200, message: 'Success', data: doc });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Server error', error: error.message });
-  }
-});
-
-app.post('/api/admin/documents', authMiddleware, upload.single('file'), async (req: Request, res: Response) => {
-  try {
-    const { title, content } = req.body;
-    const fileUrl = req.file ? `/uploads/${req.file.filename}` : null;
-
-    const doc = await prisma.document.create({
-      data: { title, content: content || '', file: fileUrl }
-    });
-    res.status(201).json({ code: 201, message: 'Document created', data: doc });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Server error', error: error.message });
-  }
-});
-
-app.put('/api/admin/documents/:id', authMiddleware, upload.single('file'), async (req: Request, res: Response) => {
-  try {
-    const { title, content } = req.body;
-    const fileUrl = req.file ? `/uploads/${req.file.filename}` : undefined;
-
-    const doc = await prisma.document.update({
-      where: { id: req.params.id },
-      data: {
-        title,
-        content,
-        ...(fileUrl && { file: fileUrl })
-      }
-    });
-    res.json({ code: 200, message: 'Document updated', data: doc });
-  } catch (error: any) {
-    res.status(500).json({ code: 500, message: 'Server error', error: error.message });
-  }
-});
-
-app.delete('/api/admin/documents/:id', authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const doc = await prisma.document.delete({ where: { id: req.params.id } });
-    res.json({ code: 200, message: 'Document deleted', data: doc });
   } catch (error: any) {
     res.status(500).json({ code: 500, message: 'Server error', error: error.message });
   }
@@ -1011,12 +932,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   }
   
   // 处理fileFilter中的自定义错误
-  if (err.message && (err.message.includes('Only image files are allowed') || err.message.includes('Only document files are allowed'))) {
+  if (err.message && err.message.includes('Only image files are allowed')) {
     return res.status(400).json({ error: err.message });
-  }
-  
-  if (err.message === 'Only image files are allowed') {
-    return res.status(400).json({ error: 'Only image files are allowed' });
   }
   
   res.status(err.status || 500).json({ 

@@ -18,7 +18,6 @@ export class SiteInfoService {
       siteInfo = await prisma.siteInfo.create({
         data: {
           phone: '139-3150-1373',
-          whatsapp: '1393150137',
           email: 'tsmainite@163.com',
           address: '河北省唐山市',
           companyName: '唐山迈尼特电气有限公司',
@@ -49,7 +48,6 @@ export class SiteInfoService {
     
     // 联系方式
     if (data.phone !== undefined) updateData.phone = data.phone;
-    if (data.whatsapp !== undefined) updateData.whatsapp = data.whatsapp;
     if (data.email !== undefined) updateData.email = data.email;
     if (data.address !== undefined) updateData.address = data.address;
     
@@ -103,7 +101,6 @@ export class SiteInfoService {
     const siteInfo = await this.getSiteInfo();
     return {
       phone: siteInfo.phone,
-      whatsapp: siteInfo.whatsapp,
       email: siteInfo.email,
       address: siteInfo.address
     };
